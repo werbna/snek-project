@@ -38,40 +38,15 @@
 
 // Figure our self Collision
 
-// createBoard
-// Code with create and array of arrays using x,y
-
-// updateBoard
-// this will check for snake location as well and food location/
-
-// Switch Case>Change Direction> event Listener
-// add something to snake stop from going backwards
-// Game Starts upon user input
-
-// Snake
-// shift in the head where the food position is.
-// maybe a method to induce a larger head and smaller tail?.
-
-// Food
-// new location based of x/y random number.
-
-// Reset Game
-// make this reset the board to 0,
-// reset snakes location.
-// Run Core Functions from the beginning.
-// Event Listener for a button.
-
-// Collision Mechanic will be based off of 0x 0y and x.max and y.max
-
 /*-------------------------------- Constants --------------------------------*/
-const gameBoard
-const gameOverText
-const scoreDisplay
-const resetButton
+const gameBoard = document.getElementById('game-board');
+const gameOverText = document.getElementById('text-element')
+const scoreDisplay = document.getElementById('score-element')
+const resetButton = document.getElementById('reset-button')
 const boardSize = 30;
 /*-------------------------------- Variables --------------------------------*/
-let cells
-let snake
+let cells = [];
+let snake [{x:10, y:10}];
 let direction
 let food
 let gameInterval;
@@ -80,5 +55,49 @@ let score = 0;
 /*------------------------ Cached Element References ------------------------*/
 
 /*----------------------------- Event Listeners -----------------------------*/
-
+resetButton.addEventListener('click', resetGame);
 /*-------------------------------- Functions --------------------------------*/
+
+// createBoard
+// Code with create and array of arrays using x,y
+function createBoard() {
+   
+}
+// updateBoard
+// this will check for snake location as well and food location/
+// Collision Mechanic will be based off of 0x 0y and x.max and y.max
+function updateBoard() {
+
+}
+// Switch Case>Change Direction> event Listener
+// add something to snake stop from going backwards
+// Game Starts upon user input
+function changeDirection() {
+
+}
+// Snake
+// shift in the head where the food position is.
+// maybe a method to induce a larger head and smaller tail?.
+
+function moveSnake() {
+
+}
+// Food
+// new location based of x/y random number.
+function placeFood() {
+
+}
+// Reset Game
+// make this reset the board to 0,
+// reset snakes location.
+// Run Core Functions from the beginning.
+// Event Listener for a button.
+
+function resetGame() {
+
+}
+
+function Init() {
+
+}
+

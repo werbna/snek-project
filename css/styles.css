@@ -1,1 +1,12 @@
 /* We can color once we added stuff in */
+
+body {
+
+}
+
+.container {
+  text-align: center;
+}
+h1 {
+  font-size: 30px;
+}
