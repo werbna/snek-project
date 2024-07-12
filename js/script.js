@@ -57,9 +57,6 @@ let score = 0;
 /*----------------------------- Event Listeners -----------------------------*/
 resetButton.addEventListener('click', resetGame);
 /*-------------------------------- Functions --------------------------------*/
-
-// createBoard
-// Code with create and array of arrays using x,y
 function createBoard() {
    gameBoard.innerHTML = ''; //This should Empty out Cells
    for (let i = 0; i < boardSize; i++) {
@@ -75,10 +72,19 @@ function createBoard() {
 // this will check for snake location as well and food location/
 // Collision Mechanic will be based off of 0x 0y and x.max and y.max
 function updateBoard() {
-  //TODO Seperate snake piece from board piece with class remove.
-  cells.foreach()
-  //TODO class list the snake
-  snake.foreach() 
+  cells.foreach(cell => cell.classList.remove('snake', 'snake-head', 'snake-tail', 'food'));
+  snake.foreach((segment,index) => {
+    const cell = cells[segmeny.y * boardSize + segment.x];
+    if (index === 0) {
+      cell.classList.add('snake-head')
+    } else if (index === snake.length -1 ) {
+      cell.classList.add('snake-tail')
+    } else {
+      cell.classList.add('snake')
+    }
+  });
+  const foodIndex = food.y * boardSize + food.xl
+  cells[foodIndex].classList.add('food');
 }
 //TODO make food index placement 
 // Switch Case>Change Direction> event Listener
@@ -89,16 +95,16 @@ function changeDirection() {
   switch (event.key) {
     //TODO Set X/Y Direction for movement
     case 'ArrowUp':
-     // newDirection = {,}
+      newDirection = { x: 0, y: -1 };
       break;
     case 'ArrowDown':
-     // newDirection = {,}
+      newDirection = { x: 0, y: 1 };
       break;
     case 'ArrowLeft':
-     // newDirection = {,}
+      newDirection = { x: -1, y: 0 };
       break;
     case 'ArrowDown':
-    //  newDirection = {,}
+      newDirection = { x: 1, y: 0 };
       break;
     default:
         return; //this should ignore other keys.
