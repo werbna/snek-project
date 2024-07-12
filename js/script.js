@@ -47,8 +47,8 @@ const boardSize = 30;
 /*-------------------------------- Variables --------------------------------*/
 let cells = [];
 let snake [{x:10, y:10}];
-let direction
-let food
+let direction = {x:0, y:0};
+let food = {x: 15. y:15};
 let gameInterval;
 let isGameRunning = false;
 let score = 0;
@@ -61,18 +61,49 @@ resetButton.addEventListener('click', resetGame);
 // createBoard
 // Code with create and array of arrays using x,y
 function createBoard() {
-   
+   gameBoard.innerHTML = ''; //This should Empty out Cells
+   for (let i = 0; i < boardSize; i++) {
+    for (let j = 0; j  < boardSize; j++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cells.push(cell);
+      gameBoard.appendChild(cell);
+    } //this should append in the cells.
+   }
 }
 // updateBoard
 // this will check for snake location as well and food location/
 // Collision Mechanic will be based off of 0x 0y and x.max and y.max
 function updateBoard() {
-
+  cells.foreach()
+  snake.foreach() 
 }
 // Switch Case>Change Direction> event Listener
 // add something to snake stop from going backwards
 // Game Starts upon user input
 function changeDirection() {
+  let newDirection;
+  switch (event.key) {
+    case 'ArrowUp':
+
+      break;
+    case 'ArrowDown':
+
+      break;
+    case 'ArrowLeft':
+
+      break;
+    case 'ArrowDown':
+
+      break;
+    default:
+        return;
+  }
+
+  //prevention of snake hitting that reverse
+
+
+  //game start upon user input
 
 }
 // Snake
@@ -80,12 +111,20 @@ function changeDirection() {
 // maybe a method to induce a larger head and smaller tail?.
 
 function moveSnake() {
-
+  const newHead = {};
+  if () {}
+  clearInterval(gameInterval);
+  gameOverText.textContent = 'Y U No Stop?!?';
+  isGameRunning = false;
+  return;
 }
 // Food
 // new location based of x/y random number.
 function placeFood() {
-
+  let newfoodPosition;
+  do {
+    //math random equation placed later
+  }
 }
 // Reset Game
 // make this reset the board to 0,
@@ -94,10 +133,23 @@ function placeFood() {
 // Event Listener for a button.
 
 function resetGame() {
-
+  clearInterval(gameInterval);
+  gameOverText.textContent = '';
+  score = 0;
+  scoreDisplay.textContent = `Score: ${score}`;
+  snake = [{x:10, y:10}];
+  direction = {0, 0};
+  food = {x:15, y:15};
+  isGameRunning: false;
+  createBoard();
+  updateBoard();
 }
 
 function Init() {
-
+  createBoard();
+  updateBoard();
+  document.addEventListener('keydown', changeDirection);
 }
+
+Init();
 
