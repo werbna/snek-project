@@ -1,43 +1,3 @@
-// Main classes in the game will be snake, apple, and game logic
-
-// game ends if snake hits own body or walls
-
-// Walls will be all the barrier outside.
-
-// Fruit Generates randomly elsewhere when eaten
-
-// Player Controls snake though Arrow Keys
-
-// Once games starts forces snake to keep moving.
-
-// Snake will grow one more at the tail when eating fruit.
-
-// a function that forces the snake to keep moving.
-
-// Init to start the game Game Loop game state, user input, game rendering.
-
-// Message saying user has lost or won.
-
-// Board will be made up using a object carrying an array designed into a 15x15 cube. (this is changeable.
-
-// As a User
-
-// I want the game to keep moving continually
-
-// I also want the fruit to keep regenerate and relocate
-
-// I want the snake to move at a constant rate as well at grow at the end.
-
-// I want to control the Snake using my keyboard.
-
-// I want my game to keep score of how many fruit I've eaten
-
-// I want the game to end if I crash into myself or the wall.
-
-// I want the board to be outlined so I know the limitation.
-
-// Figure our self Collision
-
 /*-------------------------------- Constants --------------------------------*/
 const gameBoard = document.getElementById('game-board');
 const gameOverText = document.getElementById('text-element')
@@ -46,9 +6,9 @@ const resetButton = document.getElementById('reset-button')
 const boardSize = 30;
 /*-------------------------------- Variables --------------------------------*/
 let cells = [];
-let snake [{x:10, y:10}];
-let direction = {x:0, y:0};
-let food = {x: 15. y:15};
+let snake = [{ x: 10, y: 10 }];
+let direction = { x: 0, y: 0 };
+let food = { x: 15, y: 15 };
 let gameInterval;
 let isGameRunning = false;
 let score = 0;
@@ -69,28 +29,22 @@ function createBoard() {
       } //creation of the board.
   }
 }
-// updateBoard
-// this will check for snake location as well and food location/
-// Collision Mechanic will be based off of 0x 0y and x.max and y.max
 function updateBoard() {
-  cells.foreach(cell => cell.classList.remove('snake', 'snake-head', 'snake-tail', 'food'));
+  cells.foreach(cell => cell.classList.remove('snake', 'snake-head', 'snake-tail', 'food')); 
   snake.foreach((segment,index) => {
-    const cell = cells[segmeny.y * boardSize + segment.x];
+    const cell = cells[segment.y * boardSize + segment.x];
     if (index === 0) {
       cell.classList.add('snake-head')
     } else if (index === snake.length -1 ) {
       cell.classList.add('snake-tail')
     } else {
       cell.classList.add('snake')
-    }
+    } //constantly checking snake location
   });
-  const foodIndex = food.y * boardSize + food.x;
+  const foodIndex = food.y * boardSize + food.x; //this checks for food always on board
   cells[foodIndex].classList.add('food');
 }
-//TODO make food index placement 
-// Switch Case>Change Direction> event Listener
-// add something to snake stop from going backwards
-// Game Starts upon user input
+
 function changeDirection() {
   let newDirection;
   switch (event.key) {
@@ -117,25 +71,21 @@ function changeDirection() {
 
 direction = newDirection;
 
-//game start upon user input
 if (!isGameRunning) {
     isGameRunning = true;
-    gameInterval = setInterval(moveSnake, 100);
+    gameInterval = setInterval(moveSnake, 150); //this sets the snakes speed
 }
 }
-// Snake
-// shift in the head where the food position is.
-// maybe a method to induce a larger head and smaller tail?.
 
 function moveSnake() {
-  const newHead = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
-  if (newHead.x < 0 || newHead.x >= boardSize || newHead.y < 0 || newHead.y >= boardSize || snake.some((segment, index) => index > 0 && segment.x === newHead.x && segment.y === newHead.y)) {
+  const newHead = { x: snake[0].x + direction.x, y: snake[0].y + direction.y }; 
+  if (newHead.x < 0 || newHead.x >= boardSize || newHead.y < 0 || newHead.y >= boardSize || snake.some((segment, index) => index > 0 && segment.x === newHead.x && segment.y === newHead.y)) { //self collision in here.
       clearInterval(gameInterval);
       gameOverText.textContent = `Y U No Stop?!?`;
       isGameRunning = false;
       return;
   }
-  snake.unshift(newHead);
+  snake.unshift(newHead); //growth from head using unshift.
   if (newHead.x === food.x && newHead.y === food.y) {
       placeFood();
       score++;
@@ -145,22 +95,16 @@ function moveSnake() {
   }
   updateBoard();
 }
-// Food
-// new location based of x/y random number.
 function placeFood() {
-  let newfoodPosition;
+  let newFoodPosition;
   do {
-    //TODO Math equation. this is breaking maybe mathfloor(mathrandom)
-  } while //TODO new food placement. 
+    newFoodPosition = { x: Math.floor(Math.random() * boardSize), y: Math.floor(Math.random() * boardSize) };
+    } while (snake.some(segment => segment.x === newFoodPosition.x && segment.y === newFoodPosition.y));
+    food = newFoodPosition;  //randomization of food placement.
 }
-// Reset Game
-// make this reset the board to 0,
-// reset snakes location.
-// Run Core Functions from the beginning.
-// Event Listener for a button.
 
 function resetGame() {
-  clearInterval(gameInterval);
+  clearInterval(gameInterval); 
   gameOverText.textContent = '';
   score = 0;
   scoreDisplay.textContent = `Score: ${score}`;
@@ -177,6 +121,8 @@ function Init() {
   updateBoard();
   document.addEventListener('keydown', changeDirection);
 }
+
+resetButton.addEventListener('click', resetGame);
 
 Init();
 

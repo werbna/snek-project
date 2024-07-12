@@ -1,22 +1,29 @@
 /* We can color once we added stuff in */
 
-/* body {
-
-} */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
 .container {
   text-align: center;
 }
 h1 {
-  font-size: 30px;
+  font-size: 2.5rem;
 }
 #game-over-text {
-  font-size: 20px;
-  margin-bottom: 15px;
+  font-size: 1.5px;
+  margin-bottom: 10px;
 }
 
 #score {
-  font-size: 16px;
+  font-size: 1.5rem;
 }
 
 #game-board {
