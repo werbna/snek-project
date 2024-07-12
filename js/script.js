@@ -58,15 +58,16 @@ let score = 0;
 resetButton.addEventListener('click', resetGame);
 /*-------------------------------- Functions --------------------------------*/
 function createBoard() {
-   gameBoard.innerHTML = ''; //This should Empty out Cells
-   for (let i = 0; i < boardSize; i++) {
-    for (let j = 0; j  < boardSize; j++) {
-      const cell = document.createElement('div');
-      cell.classList.add('cell');
-      cells.push(cell);
-      gameBoard.appendChild(cell);
-    } //this should append in the cells.
-   }
+  gameBoard.innerHTML = ''; //This should create Cells
+  cells = []; // set cells array to empty
+  for (let i = 0; i < boardSize; i++) {
+      for (let j = 0; j < boardSize; j++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          cells.push(cell);
+          gameBoard.appendChild(cell);
+      } //creation of the board.
+  }
 }
 // updateBoard
 // this will check for snake location as well and food location/
@@ -93,7 +94,6 @@ function updateBoard() {
 function changeDirection() {
   let newDirection;
   switch (event.key) {
-    //TODO Set X/Y Direction for movement
     case 'ArrowUp':
       newDirection = { x: 0, y: -1 };
       break;
@@ -111,16 +111,25 @@ function changeDirection() {
   }
 
   //prevention of snake hitting that reverse
+  if (direction.x + newDirection.x === 0 && direction.y + newDirection.y === 0) {
+    return;
+}
 
+direction = newDirection;
 
-  //game start upon user input
-
+//game start upon user input
+if (!isGameRunning) {
+    isGameRunning = true;
+    gameInterval = setInterval(moveSnake, 100);
+}
 }
 // Snake
 // shift in the head where the food position is.
 // maybe a method to induce a larger head and smaller tail?.
 
 function moveSnake() {
+  const newhead = {};
+  if
   //TODO focus on head direction movement and decide if i add to tail or head.
   //TODO either push it or unshift
 
