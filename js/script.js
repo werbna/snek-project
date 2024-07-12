@@ -84,7 +84,7 @@ function updateBoard() {
       cell.classList.add('snake')
     }
   });
-  const foodIndex = food.y * boardSize + food.xl
+  const foodIndex = food.y * boardSize + food.x;
   cells[foodIndex].classList.add('food');
 }
 //TODO make food index placement 
