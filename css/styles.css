@@ -10,3 +10,32 @@
 h1 {
   font-size: 30px;
 }
+#game-over-text {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+#score {
+  font-size: 16px;
+}
+
+#game-board {
+  display:grid;
+}
+/* .cell
+
+.snake
+
+.snake-tail
+
+.snake-head
+
+.food */
+
+button {
+cursor: pointer;
+}
+
+button:hover {
+
+}

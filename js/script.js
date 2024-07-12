@@ -75,29 +75,33 @@ function createBoard() {
 // this will check for snake location as well and food location/
 // Collision Mechanic will be based off of 0x 0y and x.max and y.max
 function updateBoard() {
+  //TODO Seperate snake piece from board piece with class remove.
   cells.foreach()
+  //TODO class list the snake
   snake.foreach() 
 }
+//TODO make food index placement 
 // Switch Case>Change Direction> event Listener
 // add something to snake stop from going backwards
 // Game Starts upon user input
 function changeDirection() {
   let newDirection;
   switch (event.key) {
+    //TODO Set X/Y Direction for movement
     case 'ArrowUp':
-
+     // newDirection = {,}
       break;
     case 'ArrowDown':
-
+     // newDirection = {,}
       break;
     case 'ArrowLeft':
-
+     // newDirection = {,}
       break;
     case 'ArrowDown':
-
+    //  newDirection = {,}
       break;
     default:
-        return;
+        return; //this should ignore other keys.
   }
 
   //prevention of snake hitting that reverse
@@ -111,6 +115,9 @@ function changeDirection() {
 // maybe a method to induce a larger head and smaller tail?.
 
 function moveSnake() {
+  //TODO focus on head direction movement and decide if i add to tail or head.
+  //TODO either push it or unshift
+
   const newHead = {};
   if () {}
   clearInterval(gameInterval);
@@ -123,8 +130,8 @@ function moveSnake() {
 function placeFood() {
   let newfoodPosition;
   do {
-    //math random equation placed later
-  }
+    //TODO Math equation. this is breaking maybe mathfloor(mathrandom)
+  } while //TODO new food placement. 
 }
 // Reset Game
 // make this reset the board to 0,
@@ -138,7 +145,7 @@ function resetGame() {
   score = 0;
   scoreDisplay.textContent = `Score: ${score}`;
   snake = [{x:10, y:10}];
-  direction = {0, 0};
+  direction = {x:0, y:0};
   food = {x:15, y:15};
   isGameRunning: false;
   createBoard();
