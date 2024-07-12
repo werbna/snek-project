@@ -128,17 +128,22 @@ if (!isGameRunning) {
 // maybe a method to induce a larger head and smaller tail?.
 
 function moveSnake() {
-  const newhead = {};
-  if
-  //TODO focus on head direction movement and decide if i add to tail or head.
-  //TODO either push it or unshift
-
-  const newHead = {};
-  if () {}
-  clearInterval(gameInterval);
-  gameOverText.textContent = 'Y U No Stop?!?';
-  isGameRunning = false;
-  return;
+  const newHead = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
+  if (newHead.x < 0 || newHead.x >= boardSize || newHead.y < 0 || newHead.y >= boardSize || snake.some((segment, index) => index > 0 && segment.x === newHead.x && segment.y === newHead.y)) {
+      clearInterval(gameInterval);
+      gameOverText.textContent = `Y U No Stop?!?`;
+      isGameRunning = false;
+      return;
+  }
+  snake.unshift(newHead);
+  if (newHead.x === food.x && newHead.y === food.y) {
+      placeFood();
+      score++;
+      scoreDisplay.textContent = `Score: ${score}`;
+  } else {
+      snake.pop();
+  }
+  updateBoard();
 }
 // Food
 // new location based of x/y random number.
